@@ -2,12 +2,10 @@
 import useStream from '@/plugins/useStream'
 import useRecord, { startRecord, stopRecord } from '@/plugins/useRecord'
 import { useStore } from '@/stores/index'
-import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 
 const { stream, setStream } = useStream()
 const { blob, setBlob } = useRecord()
-const router = useRouter()
 const store = useStore()
 
 const isRecording = ref(false)
@@ -42,6 +40,5 @@ const handleRecord = async () => {
     <br>
     <button @click="handleRecord">{{ isRecording ? '結束錄製' : '開始錄製' }}</button>
     <br>
-    <button @click="router.push({ name: 'Edit' })">下一步</button>
   </div>
 </template>
