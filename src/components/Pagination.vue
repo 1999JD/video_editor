@@ -8,10 +8,15 @@ const goHome = () => {
     return
   else router.push({ name: 'Home' })
 }
+
+const goEdit = () => {
+  router.push({ name: 'Edit' })
+}
 </script>
 
 <template>
   <div class="">
     <button @click="goHome">返回首頁</button>
+    <button v-show="route.name === 'Record' || route.name === 'Upload'" @click="goEdit">前往編輯</button>
   </div>
 </template>
