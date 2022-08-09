@@ -9,13 +9,18 @@ export default function useFilters() {
   })
 
   const filters = reactive([])
+  const removeFilter = function (id) {
+    const target = filters.findIndex((element) => element.id === id)
+    filters.splice(target, 1)
+  }
   const setFilters = function () {
-    filters.push(newFilter)
+    newFilter.id = filters.length + 1
+    filters.push(Object.assign({}, newFilter))
     filters.sort((a, b) => {
       return Number(a.starttime) - Number(b.starttime)
     })
   }
   return {
-    newFilter, filters, setFilters
+    newFilter, removeFilter, filters, setFilters
   }
 }

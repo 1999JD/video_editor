@@ -3,6 +3,7 @@ const frameRate = 30
 let frame = 0
 let context
 let forceStop = false
+let filterStr = ''
 
 function renderFrame(sourceVideo, filters, callBack) {
   frame++
@@ -10,11 +11,12 @@ function renderFrame(sourceVideo, filters, callBack) {
   const time = Math.floor(frame / frameRate)
 
   filters.forEach(filter => {
-    if (time == filter.starttime)
-      context.filter = filter.filterName
-    if (time == filter.endtime)
-      context.filter = 'none'
+    if (time == filter.starttime && !filterStr.includes(filter.filterName))
+      filterStr.includes('none') ? filterStr = filter.filterName : filterStr += ` ${filter.filterName}`
+    if (time == filter.endtime && filterStr.includes(filter.filterName))
+      filterStr = filterStr.replace(`${filter.filterName}`, '').trim() || 'none'
   })
+  context.filter = filterStr
   if (time >= sourceVideo.duration || forceStop) return stopVideo(callBack)
 
   context.drawImage(sourceVideo, 0, 0, 480, 360)
@@ -26,6 +28,7 @@ function renderFrame(sourceVideo, filters, callBack) {
 
 export const playVideo = function (canvas, sourceVideo, filters, callBack) {
   frame = 0
+  filterStr = ''
   forceStop = false
   canvas.width = 480
   canvas.height = 360

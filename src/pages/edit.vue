@@ -13,7 +13,7 @@ const router = useRouter()
 const { videoBlob } = storeToRefs(store)
 const canvas = ref('canvas')
 const { blob, setBlob } = useRecord()
-const { newFilter, filters, setFilters } = useFilters()
+const { newFilter, removeFilter, filters, setFilters } = useFilters()
 
 const videoElement = document.createElement('video')
 if (!videoBlob.value)
@@ -56,11 +56,11 @@ async function download() {
       <form @submit.prevent="setFilters">
         <label>
           <span>開始時間</span>
-          <input v-model="newFilter.starttime" type="text">
+          <input v-model="newFilter.starttime" type="number">
         </label>
         <label>
           <span>結束時間</span>
-          <input v-model="newFilter.endtime" type="text">
+          <input v-model="newFilter.endtime" type="number">
         </label>
         <label>
           選擇濾鏡
@@ -74,6 +74,15 @@ async function download() {
         </button>
       </form>
 
+      <ul>
+        <li v-for="filter, index in filters" :key="filter.id">
+          <p>項目{{ index + 1 }}：</p>
+          <p>濾鏡名稱：{{ filter.filterName }}</p>
+          <p>開始時間： {{ filter.starttime }}</p>
+          <p>結束時間： {{ filter.endtime }}</p>
+          <button @click="removeFilter(filter.id)"> 移除 </button>
+        </li>
+      </ul>
     </div>
 
     <button @click="handleCanvas('start')">播放</button>
