@@ -1,0 +1,100 @@
+@import "./_reset.scss";
+@import "./_variable.scss";
+@import "./_mixin.scss";
+@import "./_utilities.scss";
+@import "./_media.scss";
+
+body {
+  color: $dark;
+  font-size: $base-font;
+}
+
+.container {
+  max-width: 1200px + 24px +24px;
+  margin: auto;
+  padding: 0 24px;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  color: $primary;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  padding: 8px 4px;
+  border-bottom: 4px solid $primary;
+}
+
+p {
+  margin-bottom: 8px;
+  font-size: $lg-font;
+}
+
+button {
+  display: block;
+  margin: auto;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: $primary;
+  color: white;
+  cursor: pointer;
+  &:hover {
+    background-color: $primary-light;
+  }
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+input {
+  display: block;
+  margin-bottom: 8px;
+  border: 1px solid $gray;
+  border-radius: 4px;
+}
+
+.link-wrap {
+  @include wrap;
+  a {
+    color: $primary;
+    &:hover {
+      color: $contrast;
+    }
+  }
+}
+
+.btn-wrap {
+  @include wrap;
+  button {
+    margin: 0;
+  }
+}
+
+.grid-wrap {
+  margin-bottom: 16px;
+  border: 1px solid $gray;
+  border-top: none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 10% 40% 20% 20% 10%;
+  width: 100%;
+  text-align: center;
+}
+
+.grid-title {
+  border: 1px solid $gray;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}

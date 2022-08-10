@@ -15,8 +15,8 @@ const goEdit = () => {
 </script>
 
 <template>
-  <div class="">
-    <button @click="goHome">返回首頁</button>
-    <button v-show="route.name === 'Record' || route.name === 'Upload'" @click="goEdit">前往編輯</button>
+  <div class="link-wrap">
+    <router-link to="/">返回首頁</router-link>
+    <router-link v-show="route.name === 'Record' || route.name === 'Upload'" to="/edit">前往編輯</router-link>
   </div>
 </template>

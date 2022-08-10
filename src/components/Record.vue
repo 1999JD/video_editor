@@ -37,11 +37,12 @@ const handleRecord = async () => {
         }
       }" autoplay controls />
     </div>
-    <button @click="setStream('user')">取得攝影機影像</button>
-    <button @click="setStream('display')">取得螢幕影像</button>
-    <br>
-    <button @click="handleRecord">{{ isRecording ? '結束錄製' : '開始錄製' }}</button>
-    <br>
-    <button @click="router.push({ name: 'Edit' })">下一步</button>
+    <div class="btn-wrap">
+      <button @click="setStream('user')">取得攝影機影像</button>
+      <button @click="setStream('display')">取得螢幕影像</button>
+    </div>
+    <div class="btn-wrap">
+      <button @click="handleRecord">{{ isRecording ? '結束錄製' : '開始錄製' }}</button>
+    </div>
   </div>
 </template>
