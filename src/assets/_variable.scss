@@ -11,3 +11,7 @@ $primary: #33032f;
 $primary-light: #531253;
 $gray: #a0acad;
 $contrast: #97d8b2;
+
+:root {
+  --color-contrast: #{$contrast};
+}

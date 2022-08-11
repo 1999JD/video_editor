@@ -3,10 +3,12 @@
 @import "./_mixin.scss";
 @import "./_utilities.scss";
 @import "./_media.scss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&display=swap');
 
 body {
   color: $dark;
   font-size: $base-font;
+  font-family: "Noto Sans TC", sans-serif;
 }
 
 .container {
@@ -25,7 +27,7 @@ body {
 h2 {
   color: $primary;
   font-size: 36px;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 16px;
   padding: 8px 4px;
   border-bottom: 4px solid $primary;
@@ -54,7 +56,13 @@ button {
   }
 }
 
-input {
+label span{
+  display: block;
+  margin-bottom: 4px;
+}
+
+input,
+select {
   display: block;
   margin-bottom: 8px;
   border: 1px solid $gray;
@@ -79,7 +87,6 @@ input {
 }
 
 .grid-wrap {
-  margin-bottom: 16px;
   border: 1px solid $gray;
   border-top: none;
   border-bottom-left-radius: 4px;
@@ -89,7 +96,6 @@ input {
 .grid {
   display: grid;
   grid-template-columns: 10% 40% 20% 20% 10%;
-  width: 100%;
   text-align: center;
 }
 

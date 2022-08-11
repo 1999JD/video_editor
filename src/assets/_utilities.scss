@@ -5,3 +5,16 @@
 .w-full {
   width: 100%;
 }
+
+.h-full {
+  height: 100%;
+}
+
+@for $i from 1 through 6 {
+  .mb-#{$i} {
+    margin-bottom: ($i) * 4px;
+  }
+  .gap-#{$i} {
+    gap: ($i) * 4px;
+  }
+}

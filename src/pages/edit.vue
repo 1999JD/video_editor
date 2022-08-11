@@ -6,6 +6,7 @@ import { useRouter } from 'vue-router'
 import useFilters from '@/plugins/useFilters'
 import { playVideo, stopVideo } from '@/plugins/handlePlayCanvas.js'
 import useRecord, { startRecord, stopRecord } from '@/plugins/useRecord'
+import TrashSvg from '@/components/TrashSvg.vue'
 
 
 const store = useStore()
@@ -53,12 +54,12 @@ async function download() {
     <h2>第三步</h2>
     <div class="container center">
       <p>編輯你的檔案~</p>
-      <main class="flex w-full">
+      <main class="flex gap-4 w-full mb-4">
         <div>
           <canvas ref="canvas" width="480" height="270"></canvas>
         </div>
         <div class="w-full">
-          <form @submit.prevent="setFilters">
+          <form @submit.prevent="setFilters" class="h-full">
             <label>
               <span>開始時間</span>
               <input v-model="newFilter.starttime" type="number">
@@ -67,8 +68,8 @@ async function download() {
               <span>結束時間</span>
               <input v-model="newFilter.endtime" type="number">
             </label>
-            <label>
-              選擇濾鏡
+            <label class="mb-6">
+              <span>選擇濾鏡</span>
               <select v-model="newFilter.filterName">
                 <option value="grayscale(80%)">黑白效果</option>
                 <option value="blur(4px)">模糊</option>
@@ -81,23 +82,27 @@ async function download() {
         </div>
       </main>
 
-      <ul class="grid grid-title grid-style">
-        <li>項目</li>
-        <li>濾鏡名稱</li>
-        <li>開始時間</li>
-        <li>結束時間</li>
-        <li></li>
-      </ul>
+      <div class="mb-4 w-full" v-show="filters.length">
+        <ul class="grid grid-title grid-style w-full">
+          <li>項目</li>
+          <li>濾鏡名稱</li>
+          <li>開始時間</li>
+          <li>結束時間</li>
+          <li>
+            <TrashSvg width="20px" height="20px" />
+          </li>
+        </ul>
 
-      <ul class="w-full grid-wrap">
-        <li v-for="filter, index in filters" :key="filter.id" class="grid">
-          <p>{{ index + 1 }}</p>
-          <p>{{ filter.filterName }}</p>
-          <p>{{ filter.starttime }}</p>
-          <p>{{ filter.endtime }}</p>
-          <button @click="removeFilter(filter.id)"> 移除 </button>
-        </li>
-      </ul>
+        <ul class="w-full grid-wrap">
+          <li v-for="filter, index in filters" :key="filter.id" class="grid">
+            <p>{{ index + 1 }}</p>
+            <p>{{ filter.filterName }}</p>
+            <p>{{ filter.starttime }}</p>
+            <p>{{ filter.endtime }}</p>
+            <button @click="removeFilter(filter.id)"> 移除 </button>
+          </li>
+        </ul>
+      </div>
 
       <div class="btn-wrap">
         <button @click="handleCanvas('start')">播放</button>
@@ -108,15 +113,3 @@ async function download() {
 
   </div>
 </template>
-
-<style>
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-button {
-  width: fit-content;
-}
-</style>
