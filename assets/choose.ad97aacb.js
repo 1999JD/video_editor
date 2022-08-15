@@ -1,0 +1,1 @@
+import{_ as t,r as c,o as n,c as s,a as e,b as r}from"./index.292d036b.js";const _={},a=e("h2",null,"\u7B2C\u4E8C\u6B65",-1),l={class:"container center"},i=e("p",null,"\u9078\u64C7\u6A94\u6848",-1);function d(u,p){const o=c("router-view");return n(),s("div",null,[a,e("div",l,[i,r(o)])])}const h=t(_,[["render",d]]);export{h as default};
