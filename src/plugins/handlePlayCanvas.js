@@ -11,10 +11,22 @@ function renderFrame(sourceVideo, filters, callBack) {
   const time = Math.floor(frame / frameRate)
 
   filters.forEach(filter => {
-    if (time == filter.starttime && !filterStr.includes(filter.filterName))
+    if (filter.filterName !== 'flip' && time == filter.starttime && !filterStr.includes(filter.filterName)) {
       filterStr.includes('none') ? filterStr = filter.filterName : filterStr += ` ${filter.filterName}`
-    if (time == filter.endtime && filterStr.includes(filter.filterName))
+    }
+    if (filter.filterName !== 'flip' && time == filter.endtime && filterStr.includes(filter.filterName)) {
       filterStr = filterStr.replace(`${filter.filterName}`, '').trim() || 'none'
+    }
+    if (time == filter.starttime && filter.filterName === 'flip') {
+      context.setTransform(1, 0, 0, 1, 0, 0)
+      context.translate(480, 0)
+      context.scale(-1, 1)
+    }
+    if (time == filter.endtime && filter.filterName === 'flip') {
+      context.setTransform(1, 0, 0, 1, 0, 0)
+      context.translate(0, 0)
+      context.scale(1, 1)
+    }
   })
   context.filter = filterStr
   if (time >= sourceVideo.duration || forceStop) return stopVideo(callBack)

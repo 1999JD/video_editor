@@ -18,8 +18,7 @@ const { newFilter, removeFilter, filters, setFilters } = useFilters()
 
 const videoElement = document.createElement('video')
 if (!videoBlob.value)
-  // router.push({ name: 'Home' })
-  ''
+  router.push({ name: 'Home' })
 else {
   videoElement.load()
   videoElement.src = (window.webkitURL || window.URL).createObjectURL(videoBlob.value)
@@ -71,8 +70,13 @@ async function download() {
             <label class="mb-6">
               <span>選擇濾鏡</span>
               <select v-model="newFilter.filterName">
-                <option value="grayscale(80%)">黑白效果</option>
+                <option value="grayscale(70%)">黑白效果</option>
                 <option value="blur(4px)">模糊</option>
+                <option value="brightness(0.5)">變暗</option>
+                <option value="brightness(2)">變亮</option>
+                <option value="invert(100%)">負片</option>
+                <option value="sepia(100%)">泛黃</option>
+                <option value="flip">翻轉</option>
               </select>
             </label>
             <button type="submit">
